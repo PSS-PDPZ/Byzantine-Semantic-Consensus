@@ -1,4 +1,3 @@
-# 文件路径: ebsc_project_ws/src/ebsc_launcher/setup.py
 from setuptools import setup
 import os
 from glob import glob
@@ -17,8 +16,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='pss',
-    maintainer_email='pss@todo.todo',
+    maintainer='EBSC Developer',
+    maintainer_email='dev@ebsc.org',
     description='Top-level launch file for EBSC experiments',
     license='Apache-2.0',
     tests_require=['pytest'],

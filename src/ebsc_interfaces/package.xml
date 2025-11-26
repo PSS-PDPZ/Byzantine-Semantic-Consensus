@@ -3,7 +3,7 @@
   <name>ebsc_interfaces</name>
   <version>0.0.0</version>
   <description>EBSC Message Interfaces</description>
-  <maintainer email="pss@todo.todo">pss</maintainer>
+  <maintainer email="dev@ebsc.org">EBSC Developer</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>geometry_msgs</depend>
