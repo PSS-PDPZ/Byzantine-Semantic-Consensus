@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="ebsc_quad">
+    <static>false</static>
+    <link name="base_link">
+      <inertial>
+        <mass>1.5</mass>
+        <inertia>
+          <ixx>0.03</ixx>
+          <iyy>0.03</iyy>
+          <izz>0.04</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      
+      <!-- Central fuselage -->
+      <visual name="body">
+        <geometry>
+          <box><size>0.3 0.3 0.15</size></box>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+      
+      <collision name="collision">
+        <geometry>
+          <box><size>0.3 0.3 0.15</size></box>
+        </geometry>
+      </collision>
+      
+      <!-- 4 arms -->
+      <visual name="arm_fl">
+        <pose>0.2 0.2 0 0 0 0.785</pose>
+        <geometry>
+          <cylinder><radius>0.02</radius><length>0.25</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.4 0.4 0.4 1</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="arm_fr">
+        <pose>0.2 -0.2 0 0 0 -0.785</pose>
+        <geometry>
+          <cylinder><radius>0.02</radius><length>0.25</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.4 0.4 0.4 1</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="arm_bl">
+        <pose>-0.2 0.2 0 0 0 -0.785</pose>
+        <geometry>
+          <cylinder><radius>0.02</radius><length>0.25</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.4 0.4 0.4 1</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="arm_br">
+        <pose>-0.2 -0.2 0 0 0 0.785</pose>
+        <geometry>
+          <cylinder><radius>0.02</radius><length>0.25</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.4 0.4 0.4 1</diffuse>
+        </material>
+      </visual>
+      
+      <!-- 4 propellers -->
+      <visual name="prop_fl">
+        <pose>0.28 0.28 0.1 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.1</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0 0 0.8</ambient>
+          <diffuse>1 0 0 0.8</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="prop_fr">
+        <pose>0.28 -0.28 0.1 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.1</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0 1 0 0.8</ambient>
+          <diffuse>0 1 0 0.8</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="prop_bl">
+        <pose>-0.28 0.28 0.1 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.1</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0 0 1 0.8</ambient>
+          <diffuse>0 0 1 0.8</diffuse>
+        </material>
+      </visual>
+      
+      <visual name="prop_br">
+        <pose>-0.28 -0.28 0.1 0 0 0</pose>
+        <geometry>
+          <cylinder><radius>0.1</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>1 1 0 0.8</ambient>
+          <diffuse>1 1 0 0.8</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
