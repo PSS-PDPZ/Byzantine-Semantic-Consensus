@@ -10,7 +10,7 @@ geometry_msgs/Point estimated_location
 # Evidence (The proof to back the claim)
 # DEPRECATED: We no longer use feature_vector for validation
 float32[] feature_vector 
-# NEW: This is the cryptographic proof from the TEE/Truth Oracle
+# This is the cryptographic proof from the TEE/Truth Oracle
 string crypto_proof
 
 # Contextual Metadata

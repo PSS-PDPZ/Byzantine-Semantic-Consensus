@@ -6,12 +6,10 @@ import json
 class TruthOracle(Node):
     """
     Simulates a TEE as a centralized "Truth Oracle".
-    NEW: It has a static, built-in knowledge of the ground truth to avoid race conditions.
     """
     def __init__(self):
         super().__init__('truth_oracle')
         
-        # 核心改动：内置一份地面实况地图，与 agent 和 world 文件保持一致
         self.ground_truth_targets = {
             'tank': {'x': 15.0, 'y': 15.0},
             'truck': {'x': -10.0, 'y': 8.0},
@@ -20,7 +18,7 @@ class TruthOracle(Node):
             'infantry': {'x': 0.0, 'y': 12.0}
         }
         
-        # 创建验证服务
+        # Create a verification service
         self.verify_srv = self.create_service(
             VerifyProof,
             'verify_proof',
@@ -41,21 +39,21 @@ class TruthOracle(Node):
             claimed_class = claim['object_class']
             claimed_loc = claim['location']
 
-            # 检查声明的类别是否存在于我们的地图中
+            # Check if the declared category exists in map
             if claimed_class not in self.ground_truth_targets:
                 self.get_logger().warn(f"❌ Claim from UAV {proposer_id} for unknown class '{claimed_class}' rejected.")
                 response.is_valid = False
                 return response
 
-            # 获取该类别目标的真实位置
+            # Obtain the true location of the target in this category
             gt_loc = self.ground_truth_targets[claimed_class]
             
-            # 计算声明位置与真实位置的距离
+            # Calculate the distance between the declared location and the actual location
             dist = ((gt_loc['x'] - claimed_loc['x'])**2 + 
                     (gt_loc['y'] - claimed_loc['y'])**2)**0.5
             
-            # 如果距离在误差范围内，则认为声明为真
-            if dist < 2.5: # 允许 2.5m 的误差容忍度
+            # If the distance is within the error range, the declaration is considered true
+            if dist < 2.5: # Allowable error tolerance of 2.5m
                 self.get_logger().info(f"✅ Proof from UAV {proposer_id} for '{claimed_class}' is VALID (error: {dist:.2f}m).")
                 response.is_valid = True
             else:

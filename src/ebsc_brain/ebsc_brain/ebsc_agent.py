@@ -24,14 +24,14 @@ class EBSCAgent(Node):
         self.declare_parameter('uav_id', 0)
         self.declare_parameter('uav_name', 'uav_0')
         self.declare_parameter('is_byzantine', False)
-        # 节点数量和拜占庭节点数量的默认值
+        # Default values ​​for the number of nodes and the number of Byzantine nodes
         self.declare_parameter('total_uavs', 10) 
         self.declare_parameter('num_byzantine', 3)  
         
         self.uav_id = self.get_parameter('uav_id').get_parameter_value().integer_value
         self.uav_name = self.get_parameter('uav_name').get_parameter_value().string_value
         self.is_byzantine = self.get_parameter('is_byzantine').get_parameter_value().bool_value
-        # 节点数量和拜占庭节点的实际数量可以通过start_ebsc_experiment.launch.py文件得到
+        # The number of nodes and the actual number of Byzantine nodes can be obtained from the start_ebsc_experiment.launch.py ​​file
         self.total_uavs = self.get_parameter('total_uavs').get_parameter_value().integer_value
         self.num_byzantine = self.get_parameter('num_byzantine').get_parameter_value().integer_value  
         
@@ -79,7 +79,7 @@ class EBSCAgent(Node):
         self.get_logger().info(f"[{self.uav_name}] EBSC Agent ready and patrolling.")
 
     def handle_vote_for_manager(self, msg: String):
-        """信誉管理员记录所有投票"""
+        """The reputation administrator records all votes"""
         if not self.is_reputation_manager: 
             return
         try:
@@ -99,14 +99,14 @@ class EBSCAgent(Node):
         self.metrics_event_pub.publish(msg)
 
     def handle_reputation_update(self, msg: ReputationUpdate):
-        """非管理员节点接收信誉更新"""
+        """Non-administrator nodes receive reputation updates"""
         if self.is_reputation_manager: 
             return
         for uav_id, reputation in zip(msg.uav_ids, msg.reputations):
             self.reputation_table[uav_id] = reputation
 
     def broadcast_reputation(self):
-        """定期广播信誉表"""
+        """Regularly broadcast credit rating"""
         if not self.is_reputation_manager: 
             return
         msg = ReputationUpdate()
@@ -118,8 +118,8 @@ class EBSCAgent(Node):
 
     def update_reputation_after_vote(self, voter_id: int, vote_correct: bool):
         """
-        更新单个节点的信誉 初始信誉0.6，最高1，最低0.1
-        vote_correct: True表示行为正确（奖励），False表示行为错误（惩罚）
+        Update the reputation of a single node. Initial reputation: 0.6, maximum: 1, minimum: 0.1.
+        vote_correct: True indicates correct behavior (reward), False indicates incorrect behavior (penalty).
         """
         if not self.is_reputation_manager: 
             return
@@ -127,15 +127,15 @@ class EBSCAgent(Node):
         current_rep = self.reputation_table.get(voter_id, 0.6)
         
         if vote_correct:
-            # 正确行为: 小幅奖励
+            # Correct behavior: Small reward
             new_rep = min(1.0, current_rep + 0.01)
         else:
-            # 错误行为: 大幅惩罚
+            # Wrongful behavior: Severe punishment
             new_rep = max(0.1, current_rep - 0.1)
         
         self.reputation_table[voter_id] = new_rep
         
-        # 信誉变化会通过broadcast_reputation()自动广播给logger_node
+        # Reputation changes will be automatically broadcast to the logger node via broadcast_reputation()
 
     def simulate_patrol_and_perception(self):
         elapsed_time = time.time() - self.start_time
@@ -168,10 +168,10 @@ class EBSCAgent(Node):
                     self.trigger_perception(target_name, target_pose, target_info['class'])
 
     def trigger_perception(self, target_name: str, target_pose: Pose, target_class: str):
-        """触发感知并创建提案"""
+        """Trigger perception and create proposal"""
         original_class = target_class
         
-        # 拜占庭节点的攻击行为  拜占庭节点的提案总是恶意的
+        # Attacks on Byzantine nodes: Proposals from Byzantine nodes are always malicious.
         if self.is_byzantine:
             attack_type = np.random.choice(['class', 'location'], p=[0.6, 0.4])
             
@@ -195,7 +195,7 @@ class EBSCAgent(Node):
                     f"({offset_x:.1f}, {offset_y:.1f})m"
                 )
 
-        # 创建BEP消息
+        # Create BEP message
         bep_msg = Bep()
         bep_msg.header = Header(stamp=self.get_clock().now().to_msg(), frame_id=str(self.uav_id))
         bep_msg.object_class = target_class
@@ -203,7 +203,7 @@ class EBSCAgent(Node):
         bep_msg.estimated_location = target_pose.position
         bep_msg.uav_pose_at_perception = self.current_pose
         
-        # 创建加密证明
+        # Create a cryptographic proof
         claim = {
             "proposer_id": self.uav_id,
             "object_class": bep_msg.object_class,
@@ -215,5 +215,5 @@ class EBSCAgent(Node):
         }
         bep_msg.crypto_proof = json.dumps(claim, sort_keys=True)
         
-        # 发起共识
+        # Initiate consensus
         self.bft.propose_target(bep_msg)

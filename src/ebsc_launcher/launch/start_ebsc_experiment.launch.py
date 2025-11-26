@@ -7,7 +7,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.events import Shutdown
 
-# --- 配置参数 ---
+# Configuration parameters
 NUM_UAVS = 12
 NUM_BYZANTINE = 3
 EXPERIMENT_DURATION = 180.0

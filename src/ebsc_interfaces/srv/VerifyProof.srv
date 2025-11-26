@@ -1,10 +1,9 @@
 # VerifyProof.srv
 
-# --- Request ---
+# Request 
 # The original proposal that needs verification
 ebsc_interfaces/Bep bep_proposal
 
----
-# --- Response ---
+# Response 
 # Whether the proof contained in the proposal is valid
 bool is_valid

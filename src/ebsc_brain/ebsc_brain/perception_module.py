@@ -38,7 +38,7 @@ class PerceptionModule:
                 features_flat = torch.flatten(features, 1)
                 feature_vector = features_flat.cpu().numpy()[0].tolist()
             
-            # ✅ 改进：支持所有5种目标类型
+            # Supports all 5 target types
             target_type_map = {
                 'tank': 'tank',
                 'truck': 'truck',
@@ -47,7 +47,7 @@ class PerceptionModule:
                 'infantry': 'infantry'
             }
             
-            # 从target_name中提取类型
+            # Extract type from target_name
             object_class = None
             for keyword, class_name in target_type_map.items():
                 if keyword in target_name.lower():
@@ -55,10 +55,10 @@ class PerceptionModule:
                     break
             
             if object_class is None:
-                self.logger.warn(f"无法识别目标类型: {target_name}")
+                self.logger.warn(f"Target type not recognized: {target_name}")
                 return None, 0.0, None
             
-            # 生成置信度（稍微随机化，模拟真实不确定性）
+            # Generate confidence scores (slightly randomized to simulate real uncertainty)
             confidence_score = np.random.uniform(0.85, 0.95)
             
             return object_class, confidence_score, feature_vector

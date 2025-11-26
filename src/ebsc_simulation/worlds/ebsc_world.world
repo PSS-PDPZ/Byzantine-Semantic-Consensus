@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <world name="ebsc_world">
-    <!-- 基础环境 -->
+    <!-- Basic Environment -->
     <include><uri>model://sun</uri></include>
     <include><uri>model://ground_plane</uri></include>
     
-    <!-- Gazebo ROS 插件 -->
+    <!-- Gazebo ROS plugin -->
     <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
       <update_rate>10.0</update_rate>
     </plugin>
     
-    <!-- 建筑物 -->
+    <!-- building -->
     <model name="building_1">
       <static>true</static>
       <pose>5 15 0 0 0 0</pose>
@@ -31,7 +31,7 @@
       </link>
     </model>
     
-    <!-- 目标 1：坦克（红色立方体） -->
+    <!-- Tank (red cube) -->
     <model name="ebsc_target_tank">
       <static>true</static>
       <pose>15 15 0.5 0 0 0</pose>
@@ -53,7 +53,7 @@
       </link>
     </model>
     
-    <!-- 目标 2：卡车（蓝色圆柱） -->
+    <!-- Truck (blue cylinder) -->
     <model name="ebsc_target_truck">
       <static>true</static>
       <pose>-10 8 0.75 0 0 0</pose>
@@ -81,7 +81,7 @@
       </link>
     </model>
     
-    <!-- 目标 3：补给站（绿色球体） -->
+    <!-- Supply Station (Green Sphere) -->
     <model name="ebsc_target_supply">
       <static>true</static>
       <pose>10 -8 0.5 0 0 0</pose>
@@ -107,7 +107,7 @@
       </link>
     </model>
     
-    <!-- 目标 4：雷达站（黄色立方体） -->
+    <!-- Radar station (yellow cube) -->
     <model name="ebsc_target_radar">
       <static>true</static>
       <pose>-12 -10 1 0 0 0</pose>
@@ -129,7 +129,7 @@
       </link>
     </model>
     
-    <!-- 目标 5：步兵单位（橙色小立方体） -->
+    <!-- Infantry units (small orange cubes) -->
     <model name="ebsc_target_infantry">
       <static>true</static>
       <pose>0 12 0 0 0</pose>

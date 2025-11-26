@@ -9,7 +9,6 @@ def main(args=None):
     except KeyboardInterrupt:
         ebsc_agent.get_logger().info("UAV node interrupted by user.")
     finally:
-        # The launch system will handle shutdown.
         ebsc_agent.destroy_node()
 
 if __name__ == '__main__':
