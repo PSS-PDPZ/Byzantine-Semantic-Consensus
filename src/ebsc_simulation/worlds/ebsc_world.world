@@ -1,0 +1,154 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="ebsc_world">
+    <!-- 基础环境 -->
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+    
+    <!-- Gazebo ROS 插件 -->
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <update_rate>10.0</update_rate>
+    </plugin>
+    
+    <!-- 建筑物 -->
+    <model name="building_1">
+      <static>true</static>
+      <pose>5 15 0 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>8 1 10</size></box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box><size>8 1 10</size></box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- 目标 1：坦克（红色立方体） -->
+    <model name="ebsc_target_tank">
+      <static>true</static>
+      <pose>15 15 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- 目标 2：卡车（蓝色圆柱） -->
+    <model name="ebsc_target_truck">
+      <static>true</static>
+      <pose>-10 8 0.75 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- 目标 3：补给站（绿色球体） -->
+    <model name="ebsc_target_supply">
+      <static>true</static>
+      <pose>10 -8 0.5 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.6</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.6</radius>
+            </sphere>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- 目标 4：雷达站（黄色立方体） -->
+    <model name="ebsc_target_radar">
+      <static>true</static>
+      <pose>-12 -10 1 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.8 0.8 2</size></box>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box><size>0.8 0.8 2</size></box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- 目标 5：步兵单位（橙色小立方体） -->
+    <model name="ebsc_target_infantry">
+      <static>true</static>
+      <pose>0 12 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>0.4 0.4 0.6</size></box>
+          </geometry>
+          <material>
+            <ambient>1 0.5 0 1</ambient>
+            <diffuse>1 0.5 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <box><size>0.4 0.4 0.6</size></box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>
