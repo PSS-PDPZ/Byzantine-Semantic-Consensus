@@ -347,7 +347,7 @@ class BFTConsensus:
             )
        
         for voter_id, vote in voters_in_this_round.items():
-            # Skip the proposer himself
+            
             if voter_id == proposer_id:
                 continue
             
