@@ -14,7 +14,7 @@ This repository contains the official ROS 2 implementation for the paper:
     mkdir -p ~/ebsc_ws/src
     cd ~/ebsc_ws/src
     # Clone this repository here
-    git clone <https://github.com/PSS-PDPZ/byzantine-semantic-consensus> 
+    git clone <https://github.com/PSS-PDPZ/Byzantine-Semantic-Consensus> 
     ```
 
 2.  **Build:**
