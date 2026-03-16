@@ -1,5 +1,5 @@
 This repository contains the official ROS 2 implementation for the paper:
-**"EBSC: Forging Trustworthy Collective Perception in UAV Swarms with Evidence-based Byzantine Semantic Consensus"**
+**"EBSC: Evidence-based Byzantine Semantic  Consensus for Trustworthy Collective Perception in  UAV Swarms"**
 
 ## 🛠 Environment
 *   **OS:** Ubuntu 22.04 LTS
