@@ -1,3 +1,4 @@
+# Project-specific ignore rules
 build/
 install/
 log/
