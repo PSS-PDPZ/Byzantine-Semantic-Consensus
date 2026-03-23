@@ -16,7 +16,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='EBSC Developer',
-    maintainer_email='dev@ebsc.org',
+    maintainer_email='pss@ebsc.org',
     description='EBSC core logic: AI perception and Consensus',
     license='Apache-2.0',
     tests_require=['pytest'],
